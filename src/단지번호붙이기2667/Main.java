@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 
 public class Main {
 	
+	
 	static int n;
 	static int[][] town;
 	static int[][] visited;
@@ -32,6 +33,7 @@ public class Main {
 				town[i][j] =  s.charAt(j-1)-'0';
 			}
 		}
+		
 		for(int i =1;i<n+1;i++) {
 			for(int j =1 ; j<n+1 ; j++) {
 				if(visited[i][j]==0 && town[i][j]==1) {
@@ -45,16 +47,14 @@ public class Main {
 				
 			}
 		}
+		
 		Arrays.sort(townname);
+		
 		System.out.println(townnumber);
 		for(int i =townnumber; i>0;i--) {
 			System.out.println(townname[(n*n)-i]);
 		}
 		//print();
-		
-		
-		
-
 	}
 
 
@@ -77,16 +77,15 @@ public class Main {
 		
 	}
 
-
-	private static void print() {
-		// TODO Auto-generated method stub
-		for(int i =0;i<n+2;i++) {
-			System.out.println();
-			for(int j =0 ; j<n+2 ; j++) {
-				System.out.print(town[i][j]+" ");
-			}
-				
-		}
-	}
+//	private static void print() {
+//		// TODO Auto-generated method stub
+//		for(int i =0;i<n+2;i++) {
+//			System.out.println();
+//			for(int j =0 ; j<n+2 ; j++) {
+//				System.out.print(town[i][j]+" ");
+//			}
+//				
+//		}
+//	}
 
 }

@@ -42,12 +42,12 @@ public class Main {
 		}
 		else {
 			//int x = number[i];
-			
 			result[index]=number[i];
 			fun(end+1,i+1,index+1,result);
 			fun(end+1,i+1,index,result);
 		}
 	}
+	
 	public static void print(int[] result) {
 		for(int i = 0 ; i<6 ; i++) {
 			System.out.print(result[i]+" ");
