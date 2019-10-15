@@ -10,7 +10,7 @@ import java.util.StringTokenizer;
 public class Main {
 
 	static int n,k,event;
-	static ArrayList<ArrayList<Integer>> arraylistfront,arraylistback;
+	static int[][] history;
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -21,75 +21,40 @@ public class Main {
 		n = Integer.parseInt(st.nextToken());
 		k = Integer.parseInt(st.nextToken());
 		
-		arraylistfront = new  ArrayList<>();
-		for(int i=0;i<n+1;i++) {
-			arraylistfront.add(new ArrayList());
-		}
-		arraylistback = new  ArrayList<>();
-		for(int i=0;i<n+1;i++) {
-			arraylistback.add(new ArrayList());
-		}
-		
+		history = new int[n+1][n+1];
+
 		for(int i=0;i<k;i++) {
 			s = br.readLine();
 			st = new StringTokenizer(s);
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
-			arraylistfront.get(a).add(b);
-			arraylistback.get(b).add(a);
+			history[a][b]=-1;
+			history[b][a]=1;
 		}
+		
+		 for (int a = 1; a <= n; a++) {
+	            for (int i = 1; i <= n; i++) {
+	                for (int j = 1; j <= n; j++) {
+	                    if(history[i][a] == 0 || history[i][a] != history[a][j])
+	                        continue;
+	                    history[i][j] = history[i][a];
+	                }
+	            }
+	        }
+		
 		
 		s = br.readLine();
 		st = new StringTokenizer(s);
-		event = Integer.parseInt(st.nextToken());//알고싶은 수
-		
+		event = Integer.parseInt(st.nextToken());//알고싶은 갯수
 		
 		for(int i=0;i<event;i++) {
 			s = br.readLine();
 			st = new StringTokenizer(s);
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
-			int result = 0;
+			System.out.println(history[a][b]);
 			
-
-			result = front(a,b);
-			if(result == 1) {
-				System.out.println(-1);
-			}else {
-				result = back(a,b);
-				if(result==1) {
-					System.out.println(1);
-				}else {
-					System.out.println(0);
-				}
-			}
+			
 		}
 	}
-
-	private static int back(int a, int b) {
-		// TODO Auto-generated method stub
-		for(int i : arraylistback.get(a)) {
-			if(i==b) {
-				return 1;
-			}else {
-				return back(i,b);
-				
-			}
-		}
-		return 0;
-	}
-
-	private static int front(int a, int b) {
-		// TODO Auto-generated method stub
-		for(int i:arraylistfront.get(a)) {
-			if(i==b) {
-				return 1;
-			}else {
-				return front(i,b);
-			}
-		}
-
-		return 0;
-	}
-
 }

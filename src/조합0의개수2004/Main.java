@@ -18,15 +18,33 @@ public class Main {
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
 		
-		int sumN=1;
-		int sumM=1;
+		//끝자리가 0 의 개수 = 2^N 5^M 중 낮은 수가 0의 갯 수 이다.
+		int two=0,five=0;
+		int twotemp=2,fivetemp=5;
+		int twomax;
+		int k=1;
+		while(twotemp<=n) {
 		
-		for(int i =1 ; i<n+1 ; i++) {
-			sumN *=i;
+			two +=n/twotemp;
+			two -=m/twotemp;
+			two -=(n-m)/twotemp;
+			k++;
+			twotemp=(int)Math.pow(2, k);
+		}
+		k=1;
+		while(fivetemp<=n) {
+			five +=n/fivetemp;
+			five -=m/fivetemp;
+			five -=(n-m)/fivetemp;
+			k++;
+			fivetemp=(int)Math.pow(5, k);
 		}
 		
-		for(int i =1 ; i<n+1 ; i++) {
-			sumM *=i;
+		if(two>=five) {
+			System.out.println(five);
+		}else {
+			System.out.println(two);
+			
 		}
 	}
 	
